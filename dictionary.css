@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f4f8;
+}
+
+header {
+    background: #0a2d59; /* primary color */
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header button {
+    background: white;
+    color: #0a2d59;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+main {
+    padding: 20px;
+}
+
+.word-card {
+    background: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.word-card h2 {
+    margin: 0 0 5px 0;
+    color: #0a2d59;
+}
+
+.word-card p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.word-card small {
+    color: #666;
+}
