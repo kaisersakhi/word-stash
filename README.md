@@ -3,6 +3,8 @@
 **Word Stash** is a Chrome extension that lets you save words from any webpage, automatically fetch their meanings, and store them in your personal dictionary.
 You can view, edit, export, or clear your word stash anytime.
 
+![Screen Shot](./screenshots/dictionary-ss.jpg)
+
 ---
 
 ## ✨ Features
