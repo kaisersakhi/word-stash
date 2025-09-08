@@ -10,7 +10,7 @@
     "scripting"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background/background.js"
   },
   "commands": {
     "save-word": {
@@ -22,13 +22,10 @@
   },
   "action": {
     "default_icon": {
-      "16": "icon.png",
-      "48": "icon.png",
-      "128": "icon.png"
+      "16": "assets/icons/icon.png",
+      "48": "assets/icons/icon.png",
+      "128": "assets/icons/icon.png"
     },
     "default_title": "My Dictionary"
-  },
-  "chrome_url_overrides": {
-    "newtab": "dictionary.html"
   }
 }

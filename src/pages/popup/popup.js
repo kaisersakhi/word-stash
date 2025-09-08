@@ -12,3 +12,5 @@ function renderDictionary(words) {
 chrome.storage.local.get({dictionary: []}, (res) => {
   renderDictionary(res.dictionary);
 });
+
+

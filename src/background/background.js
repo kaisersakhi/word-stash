@@ -46,6 +46,8 @@ chrome.commands.onCommand.addListener((command) => {
 });
 
 
-chrome.action.onClicked.addListener(() => {
-  chrome.tabs.create({url: chrome.runtime.getURL("dictionary.html")});
-});
+// chrome.action.onClicked.addListener(() => {
+//   chrome.tabs.create({url: chrome.runtime.getURL("dictionary.html")});
+// });
+
+
