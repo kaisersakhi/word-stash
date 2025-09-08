@@ -1,6 +1,12 @@
 const listEl = document.getElementById('word-list');
 const clearBtn = document.getElementById('clear');
 const exportBtn = document.getElementById('export');
+const addBtn = document.getElementById('add');
+const addForm = document.getElementById('add-form');
+const saveNewBtn = document.getElementById('save-new');
+const cancelNewBtn = document.getElementById('cancel-new');
+const newWordInput = document.getElementById('new-word');
+const newMeaningInput = document.getElementById('new-meaning');
 
 function renderWords(words) {
   listEl.innerHTML = '';
@@ -16,6 +22,7 @@ function renderWords(words) {
       <div class="actions">
         <button class="edit-btn">Edit</button>
         <button class="save-btn" style="display:none;">Save</button>
+        <button class="delete-btn" data-ts="${entry.timestamp}">Delete</button>
       </div>
     `;
 
@@ -39,6 +46,17 @@ function renderWords(words) {
         const target = dict.find(d => d.word === entry.word && d.timestamp === entry.timestamp);
         if (target) target.meaning = newMeaning;
 
+        chrome.storage.local.set({dictionary: dict}, () => {
+          loadDictionary();
+        });
+      });
+    });
+
+    // Delete button
+    card.querySelector('.delete-btn').addEventListener('click', () => {
+      if (!confirm(`Delete "${entry.word}"?`)) return;
+      chrome.storage.local.get({dictionary: []}, (res) => {
+        const dict = res.dictionary.filter(d => !(d.word === entry.word && d.timestamp === entry.timestamp));
         chrome.storage.local.set({dictionary: dict}, () => {
           loadDictionary();
         });
@@ -80,5 +98,34 @@ exportBtn.addEventListener('click', () => {
 });
 
 loadDictionary();
+
+// Add flow
+addBtn.addEventListener('click', () => {
+  addForm.style.display = addForm.style.display === 'none' ? 'block' : 'none';
+  if (addForm.style.display === 'block') {
+    newWordInput.focus();
+  }
+});
+
+cancelNewBtn.addEventListener('click', () => {
+  addForm.style.display = 'none';
+  newWordInput.value = '';
+  newMeaningInput.value = '';
+});
+
+saveNewBtn.addEventListener('click', () => {
+  const word = newWordInput.value.trim();
+  const meaning = newMeaningInput.value.trim();
+  if (!word || !meaning) return;
+  chrome.storage.local.get({dictionary: []}, (res) => {
+    const updated = [...res.dictionary, {word, meaning, timestamp: new Date().toISOString()}];
+    chrome.storage.local.set({dictionary: updated}, () => {
+      newWordInput.value = '';
+      newMeaningInput.value = '';
+      addForm.style.display = 'none';
+      loadDictionary();
+    });
+  });
+});
 
 

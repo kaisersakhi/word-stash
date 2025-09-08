@@ -1,25 +1,111 @@
 <!doctype html>
 <html>
     <head>
-        <title>My Dictionary</title>
+        <title>Word Stash</title>
         <style>
             body {
-                font-family: sans-serif;
+                font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                width: 340px;
+                background: #0a2d59;
+                color: #0a2d59;
+            }
+            header {
+                background: #0a2d59;
+                color: #fff;
+                padding: 12px 14px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(255,255,255,0.15);
+            }
+            header h2 {
+                margin: 0;
+                font-size: 16px;
+                font-weight: 600;
+            }
+            main {
+                background: #f5f7fb;
+                padding: 12px 12px 10px 12px;
+            }
+            .actions {
+                display: flex;
+                gap: 8px;
+            }
+            .btn {
+                background: #ffffff;
+                color: #0a2d59;
+                border: 1px solid #d6deeb;
+                padding: 6px 10px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 12px;
+            }
+            .btn.primary {
+                background: #23a6f0;
+                color: #fff;
+                border-color: #23a6f0;
+            }
+            .list {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .item {
+                background: #ffffff;
+                border: 1px solid #e6eef7;
+                border-radius: 8px;
                 padding: 10px;
-                width: 300px;
+                box-shadow: 0 1px 2px rgba(16,24,40,0.05);
             }
-            .word {
-                margin-bottom: 10px;
+            .item .title {
+                margin: 0 0 4px 0;
+                font-weight: 600;
+                color: #0a2d59;
+                font-size: 14px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
-            .word strong {
-                display: block;
+            .item .meaning {
+                margin: 0;
+                color: #475467;
+                font-size: 12px;
+                overflow: hidden;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+            .empty {
+                color: #475467;
+                font-size: 13px;
+                text-align: center;
+                padding: 14px 6px 8px 6px;
+            }
+            footer {
+                padding: 10px 12px 12px 12px;
+                background: #f5f7fb;
+                border-top: 1px solid #e6eef7;
+                display: flex;
+                justify-content: flex-end;
             }
         </style>
     </head>
     <body>
-        <h2>My Dictionary</h2>
-        <div id="words"></div>
-
+        <header>
+            <h2>Word Stash</h2>
+            <div class="actions">
+                <button id="open-dictionary" class="btn primary">Open Stashed Words</button>
+            </div>
+        </header>
+        <main>
+            <div id="list" class="list"></div>
+            <div id="empty" class="empty" style="display:none;">No words saved yet.</div>
+        </main>
+        <footer>
+            <button id="see-all" class="btn">See all words</button>
+        </footer>
         <script src="./popup.js"></script>
     </body>
     </html>

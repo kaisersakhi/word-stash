@@ -8,11 +8,24 @@
         <header>
             <h1>Word Stash Dictionary</h1>
             <div>
+                <button id="add">Add Word</button>
                 <button id="export">Export JSON</button>
                 <button id="clear">Clear All</button>
             </div>
         </header>
-        <main id="word-list"></main>
+        <main>
+            <section id="add-form" style="display:none;margin:16px;background:#ffffff;border:1px solid #e6eef7;border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,0.05);padding:16px;">
+                <div style="display:grid;grid-template-columns:1fr;gap:8px;">
+                    <input id="new-word" type="text" placeholder="Word" style="padding:8px 10px;border:1px solid #d0d5dd;border-radius:6px;" />
+                    <textarea id="new-meaning" placeholder="Meaning" rows="3" style="padding:8px 10px;border:1px solid #d0d5dd;border-radius:6px;"></textarea>
+                    <div>
+                        <button id="save-new" style="background:#0a2d59;color:#fff;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;margin-right:8px;">Save</button>
+                        <button id="cancel-new" style="background:#e5e7eb;color:#111827;border:none;padding:8px 12px;border-radius:6px;cursor:pointer;">Cancel</button>
+                    </div>
+                </div>
+            </section>
+            <div id="word-list" class="grid"></div>
+        </main>
 
         <script src="./scripts/dictionary.js"></script>
     </body>
