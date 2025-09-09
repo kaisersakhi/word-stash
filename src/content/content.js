@@ -112,6 +112,9 @@ function showDefinitionPopup(x, y, text, isLoading = false, word = null) {
       ${word ? `<div class="popup-word">${word}</div>` : ''}
       <div class="popup-definition">${text}</div>
       ${!isLoading && word ? `
+        <div class="popup-links">
+          <a href="https://www.google.com/search?q=define+${encodeURIComponent(word)}" target="_blank" class="google-search-link">More on Google</a>
+        </div>
         <div class="popup-actions">
           <button class="save-btn">Save to Dictionary</button>
           <button class="close-btn">×</button>

@@ -18,6 +18,9 @@ function renderWords(words) {
       <h2>${entry.word}</h2>
       <p class="meaning">${entry.meaning}</p>
       <textarea class="edit-area" style="display:none;width:100%;">${entry.meaning}</textarea>
+      <div class="word-links">
+        <a href="https://www.google.com/search?q=define+${encodeURIComponent(entry.word)}" target="_blank" class="google-search-link">More on Google</a>
+      </div>
       <small>Added: ${new Date(entry.timestamp).toLocaleString()}</small>
       <div class="actions">
         <button class="edit-btn">Edit</button>

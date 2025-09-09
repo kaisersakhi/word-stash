@@ -56,6 +56,23 @@ main {
     color: #666;
 }
 
+.word-links {
+    margin: 8px 0;
+}
+
+.google-search-link {
+    color: #23a6f0;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.google-search-link:hover {
+    color: #1e8cc7;
+    text-decoration: underline;
+}
+
 .actions {
     margin-top: 10px;
 }
