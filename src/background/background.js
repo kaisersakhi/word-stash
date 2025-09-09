@@ -45,6 +45,35 @@ chrome.commands.onCommand.addListener((command) => {
   }
 });
 
+// Handle messages from content script
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === 'fetchDefinition') {
+    // Use async/await properly
+    (async () => {
+      try {
+        const definition = await fetchMeaning(request.word);
+        sendResponse({
+          success: true,
+          definition: definition
+        });
+      } catch (error) {
+        sendResponse({
+          success: false,
+          error: error.message
+        });
+      }
+    })();
+    
+    // Return true to indicate we will send a response asynchronously
+    return true;
+  } else {
+    sendResponse({
+      success: false,
+      error: 'Unknown action'
+    });
+  }
+});
+
 
 // chrome.action.onClicked.addListener(() => {
 //   chrome.tabs.create({url: chrome.runtime.getURL("dictionary.html")});

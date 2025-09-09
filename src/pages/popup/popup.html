@@ -83,6 +83,59 @@
                 text-align: center;
                 padding: 14px 6px 8px 6px;
             }
+            .settings {
+                background: #ffffff;
+                border: 1px solid #e6eef7;
+                border-radius: 8px;
+                padding: 10px;
+                margin-bottom: 8px;
+                box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+            }
+            .setting-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 8px;
+            }
+            .setting-item:last-child {
+                margin-bottom: 0;
+            }
+            .setting-label {
+                font-size: 12px;
+                color: #0a2d59;
+                font-weight: 500;
+            }
+            .setting-description {
+                font-size: 11px;
+                color: #475467;
+                margin-top: 2px;
+            }
+            .toggle {
+                position: relative;
+                width: 36px;
+                height: 20px;
+                background: #d1d5db;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+            }
+            .toggle.active {
+                background: #23a6f0;
+            }
+            .toggle::after {
+                content: '';
+                position: absolute;
+                top: 2px;
+                left: 2px;
+                width: 16px;
+                height: 16px;
+                background: white;
+                border-radius: 50%;
+                transition: transform 0.2s;
+            }
+            .toggle.active::after {
+                transform: translateX(16px);
+            }
             footer {
                 padding: 10px 12px 12px 12px;
                 background: #f5f7fb;
@@ -100,6 +153,22 @@
             </div>
         </header>
         <main>
+            <div class="settings">
+                <div class="setting-item">
+                    <div>
+                        <div class="setting-label">Double-click lookup</div>
+                        <div class="setting-description">Show word definitions when double-clicking words</div>
+                    </div>
+                    <div id="double-click-toggle" class="toggle active"></div>
+                </div>
+                <div class="setting-item">
+                    <div>
+                        <div class="setting-label">Auto-save on lookup</div>
+                        <div class="setting-description">Save words to dictionary when looking up definitions</div>
+                    </div>
+                    <div id="auto-save-toggle" class="toggle"></div>
+                </div>
+            </div>
             <div id="list" class="list"></div>
             <div id="empty" class="empty" style="display:none;">No words saved yet.</div>
         </main>

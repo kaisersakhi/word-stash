@@ -28,6 +28,34 @@ function openDictionaryTab() {
 document.getElementById('open-dictionary').addEventListener('click', openDictionaryTab);
 document.getElementById('see-all').addEventListener('click', openDictionaryTab);
 
+// Double-click lookup toggle functionality
+const doubleClickToggle = document.getElementById('double-click-toggle');
+doubleClickToggle.addEventListener('click', () => {
+  chrome.storage.local.get({doubleClickLookup: true}, (result) => {
+    const newValue = !result.doubleClickLookup;
+    chrome.storage.local.set({doubleClickLookup: newValue}, () => {
+      doubleClickToggle.classList.toggle('active', newValue);
+    });
+  });
+});
+
+// Auto-save toggle functionality
+const autoSaveToggle = document.getElementById('auto-save-toggle');
+autoSaveToggle.addEventListener('click', () => {
+  chrome.storage.local.get({autoSaveOnLookup: false}, (result) => {
+    const newValue = !result.autoSaveOnLookup;
+    chrome.storage.local.set({autoSaveOnLookup: newValue}, () => {
+      autoSaveToggle.classList.toggle('active', newValue);
+    });
+  });
+});
+
+// Load settings
+chrome.storage.local.get({doubleClickLookup: true, autoSaveOnLookup: false}, (result) => {
+  doubleClickToggle.classList.toggle('active', result.doubleClickLookup);
+  autoSaveToggle.classList.toggle('active', result.autoSaveOnLookup);
+});
+
 chrome.storage.local.get({dictionary: []}, (res) => {
   const sorted = [...res.dictionary].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
   const latestFive = sorted.slice(0, 5);
